@@ -2,19 +2,19 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
     info: {
-        title: "Contacts API",
+        title: "Pharma API",
         description: "W01-W04 CSE 341 - Rune Larsen",
         name: "Rune",
         version: "1.0.0",
         contact: {
             name: "Rune Larsen",
             email: "api@example.com",
-            url: "http://example.com/contact"
+            url: "http://example.com/pharma"
         },
        
     },
     host: process.env.NODE_ENV === 'production' 
-        ? 'w1sol.onrender.com'
+        ? 'pharma.onrender.com'
         : 'localhost:4000',
     // host: 'localhost:4000',
     schemes: process.env.NODE_ENV === 'production' 
