@@ -3,8 +3,8 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getAllMeds = async (req, res, next) => {
   // #swagger.tags = ['Meds']
-  // #swagger.description = 'Endpoint to get all contacts'
-  const result = await mongodb.getDb().db().collection('meds').find();
+  // #swagger.description = 'Endpoint to get all Medicines'
+  const result = await mongodb.getDb().db().collection('Pharma').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -17,11 +17,17 @@ const updateMeds = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   // be aware of updateOne if you only want to update specific fields
   const contact = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    favoriteColor: req.body.favoriteColor,
-    birthday: req.body.birthday
+    Name: req.body.Name,
+    "Fill Date": req.body.FillDate,
+    Prescription: req.body.Prescription,
+    "Rx #": req.body.Rx,
+    Qty: req.body.Qty,
+    Prescriber: req.body.Prescriber,
+    Pharmacist: req.body.Pharmacist,
+    "NDC#": req.body.NDC,
+    Insurance: req.body.Insurance,
+    "Claim Reference #": req.body.Claim,
+    Price: req.body.Price
   };
   const response = await mongodb
     .getDb()
@@ -64,18 +70,25 @@ const createMeds = async (req, res) => {
   // #swagger.tags = ['Meds']
   // #swagger.description = 'Endpoint to create a Meds'
   try {
-    const meds = {
-      Name: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      favoriteColor: req.body.favoriteColor,
-      birthday: req.body.birthday
+    const medication = {
+      
+      Name: req.body.Name,
+      "Fill Date": req.body.FillDate,
+      Prescription: req.body.Prescription,
+      "Rx #": req.body.Rx,
+      Qty: req.body.Qty,
+      Prescriber: req.body.Prescriber,
+      Pharmacist: req.body.Pharmacist,
+      "NDC#": req.body.NDC,
+      Insurance: req.body.Insurance,
+      "Claim Reference #": req.body.Claim,
+      Price: req.body.Price
     };
     
     const response = await mongodb
       .getDb()
       .db()
-      .collection('meds')
+      .collection('Pharma')
       .insertOne(med);
 
       if (response.acknowledged) {
@@ -102,7 +115,7 @@ const getSingleMeds = async (req, res) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection('meds')
+      .collection('Pharma')
       .findOne({ _id: userId });
 
     if (!result) {
@@ -145,5 +158,5 @@ const deleteMeds = async (req, res) => {
 
 
 module.exports = { getAllMeds, getSingleMeds, updateMeds, 
-  postsingleMeds, deleteMeds,
+  postsingleMeds, deleteMeds, 
   createMeds };

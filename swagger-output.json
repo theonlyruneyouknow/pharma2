@@ -1,14 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Contacts API",
+    "title": "Pharma API",
     "description": "W01-W04 CSE 341 - Rune Larsen",
     "name": "Rune",
     "version": "1.0.0",
     "contact": {
       "name": "Rune Larsen",
       "email": "api@example.com",
-      "url": "http://example.com/contact"
+      "url": "http://example.com/pharma"
     }
   },
   "host": "localhost:4000",
@@ -184,16 +184,6 @@
         }
       }
     },
-    "/meds": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/contacts/": {
       "get": {
         "tags": [
@@ -359,7 +349,7 @@
         "tags": [
           "Meds"
         ],
-        "description": "Endpoint to get all contacts",
+        "description": "Endpoint to get all Medicines",
         "produces": [
           "application/json"
         ],
@@ -370,17 +360,73 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Meds"
+        ],
+        "description": "Endpoint to create a Meds",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "example": "any"
+                },
+                "FillDate": {
+                  "example": "any"
+                },
+                "Prescription": {
+                  "example": "any"
+                },
+                "Rx": {
+                  "example": "any"
+                },
+                "Qty": {
+                  "example": "any"
+                },
+                "Prescriber": {
+                  "example": "any"
+                },
+                "Pharmacist": {
+                  "example": "any"
+                },
+                "NDC": {
+                  "example": "any"
+                },
+                "Insurance": {
+                  "example": "any"
+                },
+                "Claim": {
+                  "example": "any"
+                },
+                "Price": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/meds/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Meds"
+        ],
+        "description": "Endpoint to get one Meds",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -390,40 +436,145 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Meds"
+        ],
+        "description": "Endpoint to Update a Meds",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "example": "any"
+                },
+                "FillDate": {
+                  "example": "any"
+                },
+                "Prescription": {
+                  "example": "any"
+                },
+                "Rx": {
+                  "example": "any"
+                },
+                "Qty": {
+                  "example": "any"
+                },
+                "Prescriber": {
+                  "example": "any"
+                },
+                "Pharmacist": {
+                  "example": "any"
+                },
+                "NDC": {
+                  "example": "any"
+                },
+                "Insurance": {
+                  "example": "any"
+                },
+                "Claim": {
+                  "example": "any"
+                },
+                "Price": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Meds"
+        ],
+        "description": "Endpoint to create a Meds",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "example": "any"
+                },
+                "FillDate": {
+                  "example": "any"
+                },
+                "Prescription": {
+                  "example": "any"
+                },
+                "Rx": {
+                  "example": "any"
+                },
+                "Qty": {
+                  "example": "any"
+                },
+                "Prescriber": {
+                  "example": "any"
+                },
+                "Pharmacist": {
+                  "example": "any"
+                },
+                "NDC": {
+                  "example": "any"
+                },
+                "Insurance": {
+                  "example": "any"
+                },
+                "Claim": {
+                  "example": "any"
+                },
+                "Price": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
