@@ -31,6 +31,14 @@ app.set('views', './views');
 
 app.use('/', require('./routes'))
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({
+      status: 500,
+      message: err.message || 'Internal Server Error',
+      details: process.env.NODE_ENV === 'development' ? err.stack : undefined
+  });
+});
 
 function getLocalIP() {
   const interfaces = os.networkInterfaces();

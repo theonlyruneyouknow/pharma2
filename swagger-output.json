@@ -454,7 +454,7 @@
         "tags": [
           "Meds"
         ],
-        "description": "Endpoint to Update a Meds",
+        "description": "Endpoint to update all Meds",
         "parameters": [
           {
             "name": "id",
@@ -506,8 +506,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "204": {
+            "description": "No Content"
           },
           "500": {
             "description": "Internal Server Error"
@@ -518,60 +518,21 @@
         "tags": [
           "Meds"
         ],
-        "description": "Endpoint to create a Meds",
+        "description": "Endpoint to delete a Meds",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Name": {
-                  "example": "any"
-                },
-                "FillDate": {
-                  "example": "any"
-                },
-                "Prescription": {
-                  "example": "any"
-                },
-                "Rx": {
-                  "example": "any"
-                },
-                "Qty": {
-                  "example": "any"
-                },
-                "Prescriber": {
-                  "example": "any"
-                },
-                "Pharmacist": {
-                  "example": "any"
-                },
-                "NDC": {
-                  "example": "any"
-                },
-                "Insurance": {
-                  "example": "any"
-                },
-                "Claim": {
-                  "example": "any"
-                },
-                "Price": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -581,6 +542,23 @@
     }
   },
   "definitions": {
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "number",
+          "example": 500
+        },
+        "message": {
+          "type": "string",
+          "example": "Internal Server Error"
+        },
+        "details": {
+          "type": "string",
+          "example": "Error details here"
+        }
+      }
+    },
     "Contact": {
       "type": "object",
       "properties": {
@@ -605,6 +583,68 @@
           "example": "1990-01-01"
         }
       }
+    },
+    "Pharma": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string",
+          "example": "Rune,Larsen"
+        },
+        "Fill Date": {
+          "type": "string",
+          "example": "12/18/2024"
+        },
+        "Prescription": {
+          "type": "string",
+          "example": "Cyclobenzaprine 10mg Tablets"
+        },
+        "Rx #": {
+          "type": "number",
+          "example": 143658112491
+        },
+        "Qty": {
+          "type": "number",
+          "example": 90
+        },
+        "Prescriber": {
+          "type": "string",
+          "example": "Wilson,Erica"
+        },
+        "Pharmacist": {
+          "type": "string",
+          "example": "LBH"
+        },
+        "NDC#": {
+          "type": "number",
+          "example": 29300041510
+        },
+        "Insurance": {
+          "type": "string",
+          "example": "APM"
+        },
+        "Claim Reference #": {
+          "type": "object",
+          "properties": {
+            "low": {
+              "type": "number",
+              "example": 825690111
+            },
+            "high": {
+              "type": "number",
+              "example": 56702253
+            },
+            "unsigned": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        },
+        "Price": {
+          "type": "string",
+          "example": "$0.00"
+        }
+      }
     }
   },
   "parameters": {
@@ -616,6 +656,12 @@
     }
   },
   "responses": {
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/definitions/ErrorResponse"
+      }
+    },
     "NotFound": {
       "description": "Resource not found"
     },

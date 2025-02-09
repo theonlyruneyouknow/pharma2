@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 const getAllMeds = async (req, res, next) => {
   // #swagger.tags = ['Meds']
   // #swagger.description = 'Endpoint to get all Medicines'
-  const result = await mongodb.getDb().db().collection('Pharma').find();
+  const result = await mongodb.getDb().db().collection('Pharma2').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -18,21 +18,21 @@ const updateMeds = async (req, res) => {
   // be aware of updateOne if you only want to update specific fields
   const contact = {
     Name: req.body.Name,
-    "Fill Date": req.body.FillDate,
+    FillDate: req.body.FillDate,
     Prescription: req.body.Prescription,
-    "Rx #": req.body.Rx,
+    Rx : req.body.Rx,
     Qty: req.body.Qty,
     Prescriber: req.body.Prescriber,
     Pharmacist: req.body.Pharmacist,
-    "NDC#": req.body.NDC,
+    NDC: req.body.NDC,
     Insurance: req.body.Insurance,
-    "Claim Reference #": req.body.Claim,
+    ClaimReference: req.body.Claim,
     Price: req.body.Price
   };
   const response = await mongodb
     .getDb()
     .db()
-    .collection('meds')
+    .collection('Pharma2')
     .replaceOne({ _id: userId }, contact);
   console.log(response);
   if (response.modifiedCount > 0) {
@@ -51,11 +51,11 @@ const postsingleMeds = async (req, res, next) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection('meds')
+      .collection('Pharma2')
       .findOne({ _id: userId });
 
     if (!result) {
-      res.status(404).json('Contact not found');
+      res.status(404).json('Meds not found');
       return;
     }
 
@@ -73,22 +73,22 @@ const createMeds = async (req, res) => {
     const medication = {
       
       Name: req.body.Name,
-      "Fill Date": req.body.FillDate,
+      FillDate: req.body.FillDate,
       Prescription: req.body.Prescription,
-      "Rx #": req.body.Rx,
+      Rx: req.body.Rx,
       Qty: req.body.Qty,
       Prescriber: req.body.Prescriber,
       Pharmacist: req.body.Pharmacist,
-      "NDC#": req.body.NDC,
+      NDC: req.body.NDC,
       Insurance: req.body.Insurance,
-      "Claim Reference #": req.body.Claim,
+      ClaimReference: req.body.Claim,
       Price: req.body.Price
     };
     
     const response = await mongodb
       .getDb()
       .db()
-      .collection('Pharma')
+      .collection('Pharma2')
       .insertOne(med);
 
       if (response.acknowledged) {
@@ -115,7 +115,7 @@ const getSingleMeds = async (req, res) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection('Pharma')
+      .collection('Pharma2')
       .findOne({ _id: userId });
 
     if (!result) {
@@ -143,7 +143,7 @@ const deleteMeds = async (req, res) => {
     const response = await mongodb
       .getDb()
       .db()
-      .collection('meds')
+      .collection('Pharma2')
       .deleteOne({ _id: userId },true);
       
     if (response.deletedCount > 0) {
