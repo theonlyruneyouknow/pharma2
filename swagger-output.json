@@ -363,54 +363,16 @@
         "tags": [
           "Meds"
         ],
-        "description": "Endpoint to create a Meds",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Name": {
-                  "example": "any"
-                },
-                "FillDate": {
-                  "example": "any"
-                },
-                "Prescription": {
-                  "example": "any"
-                },
-                "Rx": {
-                  "example": "any"
-                },
-                "Qty": {
-                  "example": "any"
-                },
-                "Prescriber": {
-                  "example": "any"
-                },
-                "Pharmacist": {
-                  "example": "any"
-                },
-                "NDC": {
-                  "example": "any"
-                },
-                "Insurance": {
-                  "example": "any"
-                },
-                "Claim": {
-                  "example": "any"
-                },
-                "Price": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "description": "Endpoint to post one Meds",
+        "produces": [
+          "application/json"
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"

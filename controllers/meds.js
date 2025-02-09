@@ -89,7 +89,7 @@ const createMeds = async (req, res) => {
       .getDb()
       .db()
       .collection('Pharma2')
-      .insertOne(med);
+      .insertOne(medication);
 
       if (response.acknowledged) {
         res.status(201).json(response);
