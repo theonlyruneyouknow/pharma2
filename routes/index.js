@@ -29,6 +29,7 @@ routes.use('/contacts', require('./contacts'))
 routes.get('/contact', contactController.getContact);
 
 routes.use('/meds', require('./meds'))
+routes.use('/items', require('./items'))
 // routes.get('/meds', medsController.getMeds);
 
 module.exports = routes;

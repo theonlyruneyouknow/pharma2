@@ -95,6 +95,13 @@ const doc = {
               "unsigned": false
             },
             "Price": "$0.00"
+          },
+          Item: {
+              firstName: 'Sarah',
+              lastName: 'Birch',
+              email: 'sarah@test.com',
+              favoriteColor: 'Blue',
+              birthday: '1990-01-01'
           }
     }
 };
