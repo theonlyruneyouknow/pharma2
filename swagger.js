@@ -3,18 +3,18 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
     info: {
         title: "Pharma API",
-        description: "W01-W04 CSE 341 - Rune Larsen",
+        description: "Week6 CSE 341 - Rune Larsen",
         name: "Rune",
         version: "1.0.0",
         contact: {
             name: "Rune Larsen",
-            email: "api@example.com",
-            url: "http://example.com/pharma"
+            email: "theonlyrune@byui.edu",
+            url: "https://pharma2.onrender.com/api-docs"
         },
        
     },
     host: process.env.NODE_ENV === 'production' 
-        ? 'pharma.onrender.com'
+        ? 'pharma2.onrender.com'
         : 'localhost:4000',
     // host: 'localhost:4000',
     schemes: process.env.NODE_ENV === 'production' 
@@ -60,49 +60,36 @@ const doc = {
         },
         InvalidInput: {
             description: "Invalid input"
-        },
-        500: {
-            description: "Server Error",
-            schema: { $ref: "#/definitions/ErrorResponse" }
         }
     },
     definitions: {
-        ErrorResponse: {
-            status: 500,
-            message: "Internal Server Error",
-            details: "Error details here"
-        },
+        
+        Meds: {
+            
+                "Name": "any",
+                "FillDate": "any",
+                "Prescription": "any",
+                "Rx": "Integer",
+                "Qty": "Integer",
+                "Prescriber": "any",
+                "Pharmacist": "any",
+                "NDC": "Integer",
+                "Insurance": "any",
+                "Claim": "any",
+                "Price": "any"
+              
+        }
+    },
+    definitions: {
+        
         Contact: {
             firstName: 'Sarah',
             lastName: 'Birch',
             email: 'sarah@test.com',
             favoriteColor: 'Blue',
-            birthday: '1990-01-01'
-        },
-        Pharma: {
-            "Name": "Rune,Larsen",
-            "Fill Date": "12/18/2024",
-            "Prescription": "Cyclobenzaprine 10mg Tablets",
-            "Rx #": 143658112491,
-            "Qty": 90,
-            "Prescriber": "Wilson,Erica",
-            "Pharmacist": "LBH",
-            "NDC#": 29300041510,
-            "Insurance": "APM",
-            "Claim Reference #": {
-              "low": 825690111,
-              "high": 56702253,
-              "unsigned": false
-            },
-            "Price": "$0.00"
-          },
-          Item: {
-              firstName: 'Sarah',
-              lastName: 'Birch',
-              email: 'sarah@test.com',
-              favoriteColor: 'Blue',
-              birthday: '1990-01-01'
-          }
+            birthday: '1990-01-01',
+            Name: 'Rune',
+        }
     }
 };
 

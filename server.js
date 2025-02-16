@@ -23,22 +23,14 @@ app.use(express.urlencoded({ extended: true }));
 // Add CORS middleware
 app.use(cors());
 
-const mongodb = require('./db/connect');
+const mongodb = require('../db/connect');
 
 // Set view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.use('/', require('./routes'))
+app.use('/', require('../routes'))
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use((err, req, res, next) => {
-  console.error('Error:', err);
-  res.status(500).json({
-      status: 500,
-      message: err.message || 'Internal Server Error',
-      details: process.env.NODE_ENV === 'development' ? err.stack : undefined
-  });
-});
 
 function getLocalIP() {
   const interfaces = os.networkInterfaces();
@@ -59,8 +51,7 @@ mongodb.initDb((err, mongodb) => {
     } else {
         const PORT = process.env.PORT || 4000;
         const localIP = getLocalIP();
-          app.listen(PORT, '0.0.0.0', () => {
-            console.log(`Server is running on http://localhost:${PORT}`);
+        app.listen(PORT, '0.0.0.0', () => {
           // console.log(`Server is running on http://localhost:${PORT}/api-docs`);
           // console.log(`Network access: https://${localIP}:${PORT}/api-docs`);
         //   app.listen(port);
